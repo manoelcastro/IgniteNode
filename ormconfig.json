@@ -5,7 +5,10 @@
   "username": "docker",
   "password": "ignite",
   "database": "rentx",
-  "entities": ["./src/modules/car/entities/*.ts"],
+  "entities": [
+    "./src/modules/car/entities/*.ts",
+    "./src/modules/users/entities/*.ts"
+  ],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {
     "migrationsDir": "./src/database/migrations"
