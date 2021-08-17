@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 
 import {
@@ -24,11 +25,14 @@ class CreateUserUseCase {
       throw Error('This user already exists!');
     }
 
+    const passwordHash = await bcrypt.hash(password, 8);
+
     await this.usersRepository.create({
       name,
-      password,
+      password: passwordHash,
       driver_license,
       email,
+      avatar: 'fdsi',
     });
   }
 }
