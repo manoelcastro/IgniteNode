@@ -8,7 +8,10 @@ class AuthenticateUserController {
     const authenticateUserUseCase = container.resolve(AuthenticateUserUseCase);
     const { email, password } = request.body;
     try {
-      const userToken = authenticateUserUseCase.execute({ email, password });
+      const userToken = await authenticateUserUseCase.execute({
+        email,
+        password,
+      });
       return response.status(201).json({ auth: true, token: userToken });
     } catch (error) {
       return response

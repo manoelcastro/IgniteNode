@@ -28,9 +28,10 @@ class AuthenticateUserUseCase {
       throw Error('This email or password not exists!');
     }
 
-    const { id } = userExists;
+    const { id, admin } = userExists;
+    const codigo: jwt.Secret = 'dfafaeasfdagaq';
 
-    const token = jwt.sign({ id }, 'dfafaeasfdagaq', { expiresIn: 300 });
+    const token = jwt.sign({ id, admin }, codigo, { expiresIn: 300 });
 
     return token;
   }
