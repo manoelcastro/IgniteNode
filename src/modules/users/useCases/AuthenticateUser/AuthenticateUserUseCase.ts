@@ -19,13 +19,13 @@ class AuthenticateUserUseCase {
     const userExists = await this.usersRepository.findByEmail(email);
 
     if (!userExists) {
-      throw Error('This email or password not exists!');
+      throw new Error('This email or password not exists!');
     }
 
     const passwordIsOk = await bcrypt.compare(password, userExists.password);
 
     if (!passwordIsOk) {
-      throw Error('This email or password not exists!');
+      throw new Error('This email or password not exists!');
     }
 
     const { id, admin } = userExists;

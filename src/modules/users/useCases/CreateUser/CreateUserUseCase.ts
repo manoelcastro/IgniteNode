@@ -22,7 +22,7 @@ class CreateUserUseCase {
     const userExists = this.usersRepository.findByEmail(email);
 
     if (!userExists) {
-      throw Error('This user already exists!');
+      throw new Error('This user already exists!');
     }
 
     const passwordHash = await bcrypt.hash(password, 8);
